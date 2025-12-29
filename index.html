@@ -1,245 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NOVAFER · Ecosistema Cósmico</title>
-
+<meta charset="UTF-8">
+<title>Galaxia Novafer</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Orbitron', sans-serif;
+#frase {
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: rgba(255, 200, 255, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 2s ease;
+}
+#consagracion {
+  position: fixed;
+  bottom: 14px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: rgba(255, 180, 255, 0.35);
+  pointer-events: none;
+  z-index: 10;
 }
 
-body{
-    background:#000;
-    overflow:hidden;
-    position:relative;
-}
 
-/* ==== NUEVAS CAPAS CÓSMICAS ==== */
-.universe-layer{
-    position:absolute;
-    top:0;left:0;
-    width:100%;
-    height:100%;
-    background-size:cover;
-    background-position:center;
-    pointer-events:none;
-    opacity:0.35;
-    z-index:-3;
-}
-
-/* Nebulosas moviéndose */
-.nebula{
-    background-image:url('https://i.ibb.co/yk7w0ky/nebula-purple.jpg');
-    animation: nebulaMove 180s linear infinite;
-}
-@keyframes nebulaMove{
-    from{ background-position:0 0; }
-    to{ background-position:-3000px 0; }
-}
-
-/* Estrellas rápidas hyperspeed */
-.hyperstars{
-    background-image:url('https://i.ibb.co/dcGd4Hv/hyper-stars.jpg');
-    opacity:0.5;
-    animation: hyperMove 16s linear infinite;
-}
-@keyframes hyperMove{
-    from{ background-position:0 0; }
-    to{ background-position:-2600px 1000px; }
-}
-
-/* Destellos cósmicos */
-.sparkle{
-    background-image:url('https://i.ibb.co/4YfLwN5/stars-glow.png');
-    opacity:0.6;
-    mix-blend-mode:screen;
-    animation: sparkMove 60s linear infinite alternate;
-}
-@keyframes sparkMove{
-    from{ background-position:0 0; }
-    to{ background-position:1200px -600px; }
-}
-
-/* Fondo estrellado */
-.stars{
-    width: 2px;
-    height: 2px;
-    background: white;
-    position: absolute;
-    animation: blink 3s infinite linear;
-    z-index:-1;
-}
-@keyframes blink{
-    50%{ opacity:0; }
-}
-
-#space{
-    position:absolute;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-    z-index:-1;
-}
-
-/* AURA NOVAFER */
-.aura{
-    position:absolute;
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    left:50%;
-    top:50%;
-    transform:translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(0,212,255,0.4), transparent 70%);
-    filter:blur(55px);
-    animation:pulse 6s infinite alternate;
-}
-@keyframes pulse{
-    0%{ transform:translate(-50%, -50%) scale(1); }
-    100%{ transform:translate(-50%, -50%) scale(1.5); }
-}
-
-/* TEXTO */
-h1{
-    text-align:center;
-    margin-top:16vh;
-    font-size:54px;
-    color:#39f3ff;
-    letter-spacing:4px;
-    text-shadow:0 0 18px #00eaff, 0 0 6px #fff;
-    animation: glow 4s infinite alternate;
-}
-@keyframes glow{
-    from { text-shadow:0 0 8px #00eaff; }
-    to { text-shadow:0 0 25px #0ff; }
-}
-
-p{
-    text-align:center;
-    margin-top:12px;
-    color:#e2ffff;
-    font-size:20px;
-    opacity:0.7;
-}
-
-/* BOTÓN */
-.portal-btn{
-    display:block;
-    margin:45px auto;
-    padding:18px 40px;
-    background:rgba(0,255,255,0.15);
-    border:2px solid #00ffff;
-    color:#00ffff;
-    border-radius:40px;
-    font-size:18px;
-    letter-spacing:3px;
-    cursor:pointer;
-    transition:0.4s;
-    text-decoration:none;
-}
-.portal-btn:hover{
-    background:#00ffff;
-    color:#000;
-    box-shadow:0 0 20px #00ffff, 0 0 60px #00ffff;
-}
-
-/* PORTAL */
-.portal-ring{
-    position:absolute;
-    bottom:-80px;
-    left:50%;
-    transform:translateX(-50%);
-    width:350px;
-    height:350px;
-    border:2px solid #00ffff;
-    border-radius:50%;
-    box-shadow:0 0 25px #00ffff, inset 0 0 60px #00ffff;
-    filter: blur(1px);
-    animation: rotatePortal 12s linear infinite;
-    z-index:5;
-}
-@keyframes rotatePortal{
-    to{ transform:translateX(-50%) rotate(360deg); }
-}
-
-/* ==== GALAXIA DE ANDRÓMEDA GIRANDO ==== */
-.andromeda{
-    position:absolute;
-    top:10%;
-    right:-20%;
-    width:500px;
-    height:500px;
-    background:url('https://i.ibb.co/Y2vQFNs/andromeda.png') no-repeat center/contain;
-    opacity:0.35;
-    animation: spinGalaxy 90s linear infinite;
-    z-index:-2;
-}
-@keyframes spinGalaxy{
-    to{ transform:rotate(360deg); }
-}
-
-/* ==== UNIVERSO NOVAFER – CORAZÓN ==== */
-.core-novafer{
-    position:absolute;
-    width:180px;
-    height:180px;
-    left:10%;
-    bottom:18%;
-    background:url('https://i.ibb.co/GxhNnC7/cosmic-core.png') no-repeat center/contain;
-    opacity:0.6;
-    animation: heartNovafer 8s infinite alternate;
-    filter:drop-shadow(0 0 22px #0ff);
-}
-@keyframes heartNovafer{
-    from{ transform:scale(1); opacity:0.4; }
-    to{ transform:scale(1.4); opacity:1; }
-}
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+  }
 </style>
 </head>
-
 <body>
+<div id="frase">
+  así se siente crear un universo
+</div>
+<div id="consagracion">
+  Donde el silencio aprende a latir - Novafer
+</div>
 
-<!-- CAPAS DEL UNIVERSO -->
-<div class="universe-layer nebula"></div>
-<div class="universe-layer hyperstars"></div>
-<div class="universe-layer sparkle"></div>
-
-<!-- GALAXIAS -->
-<div class="andromeda"></div>
-<div class="core-novafer"></div>
-
-<!-- AURA -->
-<div class="aura"></div>
-
-<!-- Estrellas dinámicas -->
-<div id="space"></div>
-
-<h1>BIENVENIDOS A NOVAFER</h1>
-<p>Ecosistema cósmico · energía · expansión infinita</p>
-
-<a href="#" class="portal-btn">ENTRAR AL PORTAL</a>
-
-<div class="portal-ring"></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 
 <script>
-// Estrellas dinámicas
-const space=document.getElementById("space");
-for(let i=0;i<350;i++){
-    const star=document.createElement("div");
-    star.className="stars";
-    star.style.top=Math.random()*100+"vh";
-    star.style.left=Math.random()*100+"vw";
-    star.style.animationDelay=Math.random()*3+"s";
-    star.style.width=Math.random()*3+"px";
-    star.style.height=star.style.width;
-    space.appendChild(star);
+/* ESCENA */
+const scene = new THREE.Scene();
+
+/* CÁMARA */
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+camera.position.z = 60;
+
+/* RENDER */
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+/* GALAXIA */
+const starsCount = 15000;
+const geometry = new THREE.BufferGeometry();
+const positions = new Float32Array(starsCount * 3);
+
+const brazos = 4; // número de brazos espirales
+
+for (let i = 0; i < starsCount; i++) {
+  const i3 = i * 3;
+
+  const radius = Math.random() ** 1.5 * 35;
+  const brazo = i % brazos;
+  const angle = (brazo / brazos) * Math.PI * 2 + radius * 0.25;
+
+  const dispersion = 1.5;
+
+  positions[i3]     = Math.cos(angle) * radius + (Math.random() - 0.5) * dispersion;
+  positions[i3 + 1] = (Math.random() - 0.5) * 2.5;
+  positions[i3 + 2] = Math.sin(angle) * radius + (Math.random() - 0.5) * dispersion;
 }
+
+
+geometry.setAttribute(
+  'position',
+  new THREE.BufferAttribute(positions, 3)
+);
+
+const material = new THREE.PointsMaterial({
+  color: 0xff88ff,
+  size: 0.15,
+  transparent: true,
+  opacity: 0.8
+});
+
+const galaxy = new THREE.Points(geometry, material);
+scene.add(galaxy);
+// 🌟 Núcleo luminoso
+const coreMaterial = new THREE.PointsMaterial({
+  color: 0xffccff,
+  size: 0.35,
+  transparent: true,
+  opacity: 0.9
+});
+
+const core = new THREE.Points(geometry, coreMaterial);
+scene.add(core);
+
+// ⏱️ Tiempo para el latido
+let tiempo = 0;
+let nacimiento = 0; // progreso del nacimiento
+
+
+
+let mouseX = 0;
+let mouseY = 0;
+
+document.addEventListener("mousemove", (event) => {
+  mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+  mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+});
+
+document.addEventListener("touchmove", (event) => {
+  const t = event.touches[0];
+  mouseX = (t.clientX / window.innerWidth) * 2 - 1;
+  mouseY = -(t.clientY / window.innerHeight) * 2 + 1;
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  tiempo += 0.006;
+
+  // Progreso del nacimiento
+nacimiento = Math.min(nacimiento + 0.002, 1);
+
+// Latido suave que entra poco a poco
+const latido = 1 + Math.sin(tiempo) * 0.06 * nacimiento;
+
+// Aparición progresiva
+galaxy.material.opacity = 0.8 * nacimiento;
+
+  galaxy.scale.set(latido, latido, latido);
+
+  galaxy.rotation.y += 0.0005;
+galaxy.rotation.x += 0.0002;
+
+
+  galaxy.rotation.y += mouseX * 0.002;
+  galaxy.rotation.x += mouseY * 0.002;
+
+  renderer.render(scene, camera);
+  core.scale.set(
+  latido * 0.55,
+  latido * 0.55,
+  latido * 0.55
+);
+
+core.rotation.y = galaxy.rotation.y;
+core.rotation.x = galaxy.rotation.x;
+core.material.opacity = 0.9 * nacimiento;
+
+}
+animate();
+
 </script>
 
 </body>
 </html>
+
