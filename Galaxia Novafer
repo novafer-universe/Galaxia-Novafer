@@ -1,1 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOVAFER · Ecosistema Cósmico</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body{
+    background:#000;
+    overflow:hidden;
+    position:relative;
+}
+
+/* ==== NUEVAS CAPAS CÓSMICAS ==== */
+.universe-layer{
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    pointer-events:none;
+    opacity:0.35;
+    z-index:-3;
+}
+
+/* Nebulosas moviéndose */
+.nebula{
+    background-image:url('https://i.ibb.co/yk7w0ky/nebula-purple.jpg');
+    animation: nebulaMove 180s linear infinite;
+}
+@keyframes nebulaMove{
+    from{ background-position:0 0; }
+    to{ background-position:-3000px 0; }
+}
+
+/* Estrellas rápidas hyperspeed */
+.hyperstars{
+    background-image:url('https://i.ibb.co/dcGd4Hv/hyper-stars.jpg');
+    opacity:0.5;
+    animation: hyperMove 16s linear infinite;
+}
+@keyframes hyperMove{
+    from{ background-position:0 0; }
+    to{ background-position:-2600px 1000px; }
+}
+
+/* Destellos cósmicos */
+.sparkle{
+    background-image:url('https://i.ibb.co/4YfLwN5/stars-glow.png');
+    opacity:0.6;
+    mix-blend-mode:screen;
+    animation: sparkMove 60s linear infinite alternate;
+}
+@keyframes sparkMove{
+    from{ background-position:0 0; }
+    to{ background-position:1200px -600px; }
+}
+
+/* Fondo estrellado */
+.stars{
+    width: 2px;
+    height: 2px;
+    background: white;
+    position: absolute;
+    animation: blink 3s infinite linear;
+    z-index:-1;
+}
+@keyframes blink{
+    50%{ opacity:0; }
+}
+
+#space{
+    position:absolute;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    z-index:-1;
+}
+
+/* AURA NOVAFER */
+.aura{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(0,212,255,0.4), transparent 70%);
+    filter:blur(55px);
+    animation:pulse 6s infinite alternate;
+}
+@keyframes pulse{
+    0%{ transform:translate(-50%, -50%) scale(1); }
+    100%{ transform:translate(-50%, -50%) scale(1.5); }
+}
+
+/* TEXTO */
+h1{
+    text-align:center;
+    margin-top:16vh;
+    font-size:54px;
+    color:#39f3ff;
+    letter-spacing:4px;
+    text-shadow:0 0 18px #00eaff, 0 0 6px #fff;
+    animation: glow 4s infinite alternate;
+}
+@keyframes glow{
+    from { text-shadow:0 0 8px #00eaff; }
+    to { text-shadow:0 0 25px #0ff; }
+}
+
+p{
+    text-align:center;
+    margin-top:12px;
+    color:#e2ffff;
+    font-size:20px;
+    opacity:0.7;
+}
+
+/* BOTÓN */
+.portal-btn{
+    display:block;
+    margin:45px auto;
+    padding:18px 40px;
+    background:rgba(0,255,255,0.15);
+    border:2px solid #00ffff;
+    color:#00ffff;
+    border-radius:40px;
+    font-size:18px;
+    letter-spacing:3px;
+    cursor:pointer;
+    transition:0.4s;
+    text-decoration:none;
+}
+.portal-btn:hover{
+    background:#00ffff;
+    color:#000;
+    box-shadow:0 0 20px #00ffff, 0 0 60px #00ffff;
+}
+
+/* PORTAL */
+.portal-ring{
+    position:absolute;
+    bottom:-80px;
+    left:50%;
+    transform:translateX(-50%);
+    width:350px;
+    height:350px;
+    border:2px solid #00ffff;
+    border-radius:50%;
+    box-shadow:0 0 25px #00ffff, inset 0 0 60px #00ffff;
+    filter: blur(1px);
+    animation: rotatePortal 12s linear infinite;
+    z-index:5;
+}
+@keyframes rotatePortal{
+    to{ transform:translateX(-50%) rotate(360deg); }
+}
+
+/* ==== GALAXIA DE ANDRÓMEDA GIRANDO ==== */
+.andromeda{
+    position:absolute;
+    top:10%;
+    right:-20%;
+    width:500px;
+    height:500px;
+    background:url('https://i.ibb.co/Y2vQFNs/andromeda.png') no-repeat center/contain;
+    opacity:0.35;
+    animation: spinGalaxy 90s linear infinite;
+    z-index:-2;
+}
+@keyframes spinGalaxy{
+    to{ transform:rotate(360deg); }
+}
+
+/* ==== UNIVERSO NOVAFER – CORAZÓN ==== */
+.core-novafer{
+    position:absolute;
+    width:180px;
+    height:180px;
+    left:10%;
+    bottom:18%;
+    background:url('https://i.ibb.co/GxhNnC7/cosmic-core.png') no-repeat center/contain;
+    opacity:0.6;
+    animation: heartNovafer 8s infinite alternate;
+    filter:drop-shadow(0 0 22px #0ff);
+}
+@keyframes heartNovafer{
+    from{ transform:scale(1); opacity:0.4; }
+    to{ transform:scale(1.4); opacity:1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CAPAS DEL UNIVERSO -->
+<div class="universe-layer nebula"></div>
+<div class="universe-layer hyperstars"></div>
+<div class="universe-layer sparkle"></div>
+
+<!-- GALAXIAS -->
+<div class="andromeda"></div>
+<div class="core-novafer"></div>
+
+<!-- AURA -->
+<div class="aura"></div>
+
+<!-- Estrellas dinámicas -->
+<div id="space"></div>
+
+<h1>BIENVENIDOS A NOVAFER</h1>
+<p>Ecosistema cósmico · energía · expansión infinita</p>
+
+<a href="#" class="portal-btn">ENTRAR AL PORTAL</a>
+
+<div class="portal-ring"></div>
+
+<script>
+// Estrellas dinámicas
+const space=document.getElementById("space");
+for(let i=0;i<350;i++){
+    const star=document.createElement("div");
+    star.className="stars";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    star.style.animationDelay=Math.random()*3+"s";
+    star.style.width=Math.random()*3+"px";
+    star.style.height=star.style.width;
+    space.appendChild(star);
+}
+</script>
+
+</body>
+</html>
 
